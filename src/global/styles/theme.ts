@@ -9,5 +9,11 @@ export default {
     shape: '#FFFFFF',
     title: '#363F5F',
     background: '#F0F2F5',
+  },
+
+  fonts:{
+    regular: 'Poppins_400Regular',
+    medium: 'Poppins_500Medium',
+    bold: 'Poppins_700Bold',
   }
 }

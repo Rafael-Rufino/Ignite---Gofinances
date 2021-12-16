@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { HighlightCard } from "../../Components/HighlightCard";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+//import { format } from "date-fns";
 
 import {
   TransactionCard,
@@ -44,13 +45,13 @@ export const Dashboard: React.FC = () => {
           month: "2-digit",
           year: "2-digit",
         }).format(new Date(item.date));
-
+        // const date = new Date().toLocaleDateString();
         return {
           id: item.id,
           name: item.name,
-          amount,
           type: item.type,
           category: item.category,
+          amount,
           date,
         };
       }

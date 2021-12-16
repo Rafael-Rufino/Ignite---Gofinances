@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Keyboard, Modal, TouchableWithoutFeedback, Alert } from "react-native";
 import Button from "../../Components/Forms/Button";
 import CategorySelectButton from "../../Components/Forms/CategorySelectButton";
@@ -46,7 +46,7 @@ export function Register() {
     resolver: yupResolver(schema),
   });
 
-  function handleTransactionTypeSelect(type: "up" | "down") {
+  function handleTransactionTypeSelect(type: "positive" | "negative") {
     setTransactionType(type);
   }
 
@@ -65,9 +65,9 @@ export function Register() {
       id: String(uuid.v4()),
       name: form.name,
       amount: form.amount,
-      transactionType,
+      type: transactionType,
       category: category.key,
-      data: new Date(),
+      date: String(new Date()),
     };
     try {
       const dataKey = "@gofinances:transactions";
@@ -89,7 +89,13 @@ export function Register() {
       Alert.alert("Não foi possivel selvar");
     }
   }
-
+  // useEffect(() => {
+  //   async function deleteAll() {
+  //     const dataKey = "@gofinances:transactions";
+  //     await AsyncStorage.removeItem(dataKey);
+  //   }
+  //   deleteAll();
+  // }, []);
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Container>
@@ -115,16 +121,16 @@ export function Register() {
             />
             <Transactions>
               <TransactionTypeButton
-                title="income"
+                title="Income"
                 type="up"
-                onPress={() => handleTransactionTypeSelect("up")}
-                isActive={transactionType === "up"}
+                onPress={() => handleTransactionTypeSelect("positive")}
+                isActive={transactionType === "positive"}
               />
               <TransactionTypeButton
-                onPress={() => handleTransactionTypeSelect("down")}
-                title="outocome"
+                onPress={() => handleTransactionTypeSelect("negative")}
+                title="Outocome"
                 type="down"
-                isActive={transactionType === "down"}
+                isActive={transactionType === "negative"}
               />
             </Transactions>
             <CategorySelectButton

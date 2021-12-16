@@ -20,7 +20,7 @@ export const Title = styled.Text`
 
 export const Amount = styled.Text<TypeProps>`
   color: ${({ theme, type }) =>
-    type === "negative" ? theme.colors.attention : theme.colors.success};
+    type === "positive" ? theme.colors.success : theme.colors.attention};
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: ${RFValue(20)}px;
   margin-top: 2px;

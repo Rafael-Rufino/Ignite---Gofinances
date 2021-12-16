@@ -1,5 +1,8 @@
 import React from "react";
+import "intl";
+import "intl/locale-data/jsonp/pt-BR";
 import { ThemeProvider } from "styled-components";
+
 import theme from "./src/global/styles/theme";
 import {
   useFonts, // hooks para carregar fonts

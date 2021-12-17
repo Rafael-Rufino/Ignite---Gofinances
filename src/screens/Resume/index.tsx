@@ -4,9 +4,21 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { categories } from "../../utils/categories";
 import { useFocusEffect } from "@react-navigation/native";
 import { VictoryPie } from "victory-native";
-import { Container, Header, Title, Content, ChartContainer } from "./styles";
 import { RFValue } from "react-native-responsive-fontsize";
 import { useTheme } from "styled-components";
+import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
+import {
+  Container,
+  Header,
+  Title,
+  Content,
+  ChartContainer,
+  MonthSelect,
+  MonthSelectButton,
+  SelectIcon,
+  Month,
+} from "./styles";
+
 interface TransactionData {
   type: "positive" | "negative";
   name: string;
@@ -43,7 +55,6 @@ export const Resume: React.FC = () => {
       },
       0
     );
-    console.log(expensivesTotal);
     const totalByCategory: CategoryData[] = [];
     categories.forEach((category) => {
       let categorySum = 0;
@@ -90,7 +101,23 @@ export const Resume: React.FC = () => {
       <Header>
         <Title>Resumo por categoria</Title>
       </Header>
-      <Content>
+      <Content
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          paddingHorizontal: 24,
+          paddingBottom: useBottomTabBarHeight(),
+        }}
+      >
+        <MonthSelect>
+          <MonthSelectButton>
+            <SelectIcon name="chevron-left" />
+          </MonthSelectButton>
+
+          <Month>Maio</Month>
+          <MonthSelectButton>
+            <SelectIcon name="chevron-right" />
+          </MonthSelectButton>
+        </MonthSelect>
         <ChartContainer>
           <VictoryPie
             data={totalByCategory}

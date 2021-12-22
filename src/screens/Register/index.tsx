@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Keyboard, Modal, TouchableWithoutFeedback, Alert } from "react-native";
 import Button from "../../Components/Forms/Button";
 import CategorySelectButton from "../../Components/Forms/CategorySelectButton";

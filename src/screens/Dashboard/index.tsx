@@ -5,7 +5,7 @@ import { ActivityIndicator } from "react-native";
 import { useTheme } from "styled-components";
 //import { format } from "date-fns";
 import { useFocusEffect } from "@react-navigation/native";
-
+import { useAuth } from "../../hooks/auth";
 import {
   TransactionCard,
   TransactionCardProps,
@@ -48,6 +48,7 @@ export const Dashboard: React.FC = () => {
     {} as HighlightData
   );
   const theme = useTheme();
+  const { signOut, user } = useAuth();
 
   function getListTransactionDate(
     collection: DataListProps[],
@@ -162,15 +163,15 @@ export const Dashboard: React.FC = () => {
               <UserInfo>
                 <Photo
                   source={{
-                    uri: "https://avatars.githubusercontent.com/u/45695326?v=4",
+                    uri: user.photo,
                   }}
                 />
                 <User>
                   <UserGreenting>Ola,</UserGreenting>
-                  <UserName>Rafael</UserName>
+                  <UserName>{user.name}</UserName>
                 </User>
               </UserInfo>
-              <LogoutButton onPress={() => {}}>
+              <LogoutButton onPress={signOut}>
                 <Icon name="power" />
               </LogoutButton>
             </UserWrapper>

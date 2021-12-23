@@ -1,7 +1,7 @@
 <h3 align="center">
     <img alt="Logo" title="#logo" width="300px" src="./.github/logo.svg">
     <br><br>
-    <b>Gofinances é uma plataforma de Financias </b>  
+    <b>Gofinances é uma plataforma de Financias Pessoais </b>  
     <br>
 </h3>
 
@@ -50,6 +50,7 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias
 #### - ReactButton e  BordelessButton
 #### - Async Storage (inserir, remover, lib uuid, graficos)
 #### - Contexto
+#### - Variaveis de anbiente
 #### - Login Social (Google, Apple)
 #### - Criando Rotas publicas e privadas
 

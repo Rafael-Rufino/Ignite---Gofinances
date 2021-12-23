@@ -22,6 +22,7 @@ import {
   Month,
 } from "./styles";
 import { LoadContainer } from "../Dashboard/styles";
+import { useAuth } from "../../hooks/auth";
 
 interface TransactionData {
   type: "positive" | "negative";
@@ -44,6 +45,7 @@ export const Resume: React.FC = () => {
   const [isLoading, setLoading] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [totalByCategory, setTotalByCategory] = useState<CategoryData[]>([]);
+  const { user } = useAuth();
   const theme = useTheme();
 
   function handleDateChange(action: "next" | "prev"): void {
@@ -58,7 +60,7 @@ export const Resume: React.FC = () => {
 
   async function loadData() {
     setLoading(true);
-    const dataKey = "@gofinances:transactions";
+    const dataKey = `@gofinances:transactions:${user.id}`;
     const response = await AsyncStorage.getItem(dataKey);
     const responseFormatted = response ? JSON.parse(response) : [];
 

@@ -54,12 +54,18 @@ export const Dashboard: React.FC = () => {
     collection: DataListProps[],
     type: "positive" | "negative"
   ) {
+    const collectionFilttered = collection.filter(
+      (transaction) => transaction.type === type
+    );
+    if (collectionFilttered.length == 0) {
+      return 0;
+    }
     const lastTransaction = new Date(
       Math.max.apply(
         Math,
-        collection
-          .filter((transaction) => transaction.type === type)
-          .map((transaction) => new Date(transaction.date).getTime())
+        collectionFilttered.map((transaction) =>
+          new Date(transaction.date).getTime()
+        )
       )
     );
     return `${lastTransaction.getDate()} de ${lastTransaction.toLocaleString(
@@ -112,7 +118,10 @@ export const Dashboard: React.FC = () => {
       transactions,
       "negative"
     );
-    const totalINterval = `01 a ${lastTransactionExpensives}`;
+    const totalINterval =
+      lastTransactionExpensives === 0
+        ? "Não a movimentações"
+        : `01 a ${lastTransactionExpensives}`;
     const total = entriesTotal - expenseveTotal;
     setHighlightData({
       entries: {
@@ -120,14 +129,20 @@ export const Dashboard: React.FC = () => {
           style: "currency",
           currency: "BRL",
         }),
-        lastTransaction: `Ùltima entrada dia ${lastTransactionEntries}`,
+        lastTransaction:
+          lastTransactionEntries === 0
+            ? "Não há trandações"
+            : `Ùltima entrada dia ${lastTransactionEntries}`,
       },
       expensives: {
         amount: expenseveTotal.toLocaleString("pt-BR", {
           style: "currency",
           currency: "BRL",
         }),
-        lastTransaction: `Ùltima saida dia ${lastTransactionExpensives}`,
+        lastTransaction:
+          lastTransactionExpensives === 0
+            ? "Não há trandações"
+            : `Ùltima saida dia ${lastTransactionExpensives}`,
       },
       total: {
         amount: total.toLocaleString("pt-BR", {

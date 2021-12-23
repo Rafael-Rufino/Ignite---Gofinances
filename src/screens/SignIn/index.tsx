@@ -28,7 +28,6 @@ const SignIn: React.FC = () => {
       setIsLoading(true);
       return await signInWithGoogle();
     } catch (error) {
-      console.log(error);
       Alert.alert("Não foi possivel conectar a conta Google");
       setIsLoading(false);
     }
@@ -38,7 +37,6 @@ const SignIn: React.FC = () => {
       setIsLoading(true);
       return await signInWithAplle();
     } catch (error) {
-      console.log(error);
       Alert.alert("Não foi possivel conectar a conta Apple");
       setIsLoading(false);
     }
